@@ -4,13 +4,15 @@ var app = express();
 
 // on the request to root (localhost:3000/)
 app.get('/', function (req, res) {
-    res.send('<b>My</b> first express http server');
+    res.sendFile('index.html', { root: '.' })
 });
 
-// On localhost:3000/welcome
-app.get('/welcome', function (req, res) {
-    res.send('<b>Hello</b> welcome to my http server made with express');
-});
+// // On localhost:3000/welcome
+// app.get('/welcome', function (req, res) {
+//     res.send('<b>Hello</b> welcome to my http server made with express');
+// });
+
+app.use(express.static(__dirname + '/public'));
 
 // Change the 404 message modifing the middleware
 app.use(function(req, res, next) {

@@ -24,7 +24,9 @@
 
 		let format = d3.format(',d');
 
-		let scaleColor = d3.scaleOrdinal(d3.schemeCategory20);
+		let scaleColor = d3.scaleOrdinal().range(["#B0D5D0", 
+			"#91bad8" ,"#FFDEE5", "#E2B1CD", "#FEE8DB"]);
+		// let scaleColor = d3.scaleOrdinal(d3.schemeCategory20);
 
 		// use pack to calculate radius of the circle
 		let pack = d3.pack()
@@ -72,7 +74,7 @@
 		});
 		simulation.nodes(nodes).on('tick', ticked);
 
-		svg.style('background-color', '#eee');
+		svg.style('background-color', '#f2f2f2');
 		let node = svg.selectAll('.node')
 			.data(nodes)
 			.enter().append('g')

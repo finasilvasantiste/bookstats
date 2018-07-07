@@ -34,7 +34,7 @@ let data = [{
 			icon: 'img/ravens.png',
 			
 		}, {
-			cat: 'Dystopia', name: 'Red Clocks', value: 10,
+			cat: 'Sci-Fi', name: 'Red Clocks', value: 10,
 			icon: 'img/redclocks.png',
 				
 		}, {
@@ -46,7 +46,7 @@ let data = [{
 			icon: 'img/dreams.png',
 			
 		}, {
-			cat: 'Historical Fiction', name: 'Kindred', value: 100,
+			cat: 'Sci-Fi', name: 'Kindred', value: 100,
 			icon: 'img/kindred.png',
 				
 		}, {
@@ -58,7 +58,7 @@ let data = [{
 			icon: 'img/moyes.png',
 			
 		}, {
-			cat: 'Magical Realism', name: 'The Ocean at the End of the Lane', value: 60,
+			cat: 'Fantasy', name: 'The Ocean at the End of the Lane', value: 60,
 			icon: 'img/ocean.png',
 			
 		}, {
@@ -66,7 +66,7 @@ let data = [{
 			icon: 'img/red.png',
 			
 		}, {
-			cat: 'Fantasy', name: 'Moment JS', value: 100,
+			cat: 'Fantasy', name: 'Days of Blood and Starlight', value: 100,
 			icon: 'img/starlight.png',
 			
 		}, {
@@ -78,7 +78,7 @@ let data = [{
 			icon: 'img/vampire.png',
 			
 		}, {
-			cat: 'Historical Fiction', name: 'Vaterland', value: 100,
+			cat: 'Sci-Fi', name: 'Vaterland', value: 100,
 			icon: 'img/vaterland.png',
 			
 		}];
