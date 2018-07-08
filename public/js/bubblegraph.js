@@ -1,3 +1,4 @@
+		function drawGraph(){
 
 		let svg = d3.select('svg');
 		let width = document.body.clientWidth; // get width in pixels
@@ -276,3 +277,5 @@
 				.select('circle')
 					.attr('r', d => d.r);
 		}
+
+	};
