@@ -4,10 +4,11 @@
 	<title>Book Stats</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css"/>
 
-	<svg id='bubblegraph' width="100%" height="800" font-family="sans-serif" font-size="10" text-anchor="middle"></svg>
+	<svg id='bubblegraph' width="100%" height="600" font-family="sans-serif" font-size="10" text-anchor="middle"></svg>
 
 	<script type="text/javascript" src="js/d3.min.js"></script>
 	<script type="text/javascript" src="js/d3-legend.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js/book_data.js"></script>
 	<script type="text/javascript" src="js/bubblegraph.js"></script>
 
@@ -24,6 +25,38 @@
 	</script> -->
 </head>
 <body>
-	<button onclick="drawGraph()">Click me</button>
+	<div id="form">
+		<fieldset>
+			  <legend>Choose filter</legend>
+			  <div>
+			    <input type="checkbox" id="genre" value="genre">
+			    <label for="genre">Genre</label>
+			  </div>
+			  <div>
+			    <input type="checkbox" id="rating" value="rating">
+			    <label for="rating">Rating</label>
+			  </div>
+			  <div>
+			  	<input id="submit" type="submit" value="Submit">
+			  </div>
+		</fieldset>
+	</div>
+<script type="text/javascript">
+	$("#submit").click(function(){
+		if($('#genre').is(":checked") && $('#rating').is(":checked")){
+			drawGraph('both');
+			console.log("both");
+		}else if($('#rating').is(":checked")){
+			drawGraph('rating');
+		}else if($('#genre').is(":checked")){
+			drawGraph('genre');
+			console.log('genre');
+		}else{
+			console.log('Nothing checked');
+		}
+	console.log("Submit");
+})
+</script>
+
 </body>
 </html>

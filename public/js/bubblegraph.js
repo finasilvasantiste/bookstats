@@ -1,4 +1,8 @@
-		function drawGraph(){
+		
+
+
+		function drawGraph(filter){
+		console.log(filter);
 
 		let svg = d3.select('svg');
 		let width = document.body.clientWidth; // get width in pixels
@@ -10,8 +14,23 @@
 
 		let format = d3.format(',d');
 
-		let scaleColor = d3.scaleOrdinal().range(["#B0D5D0", 
+		 $("#bubblegraph").empty().attr("width", '100%').attr("height", 600);
+
+
+		let scaleColor;
+
+		setColor(filter);
+
+		function setColor(filter){
+			if (filter=="genre" || filter=="both"){
+				scaleColor = d3.scaleOrdinal().range(["#B0D5D0", 
 			"#91bad8" ,"#FFDEE5", "#E2B1CD", "#FEE8DB"]);
+			}
+			else{
+				scaleColor = d3.scaleOrdinal().range(["#cecece"]);
+			}
+		}
+ 
 		// let scaleColor = d3.scaleOrdinal(d3.schemeCategory20);
 
 		// use pack to calculate radius of the circle
@@ -43,13 +62,21 @@
 		// we use pack() to automatically calculate radius conveniently only
 		// and get only the leaves
 		let nodes = pack(root).leaves().map(node => {
-			console.log('node:', node.x, (node.x - centerX) * 2);
+			// console.log('node:', node.x, (node.x - centerX) * 2);
 			const data = node.data;
+
+
+			var radiusHolder=40;
+			if (filter=="rating" || filter=="both"){
+				radiusHolder = node.r;
+			};
+
 			return {
 				x: centerX + (node.x - centerX) * 3, // magnify start position to have transition to center movement
 				y: centerY + (node.y - centerY) * 3,
 				r: 0, // for tweening
-				radius: node.r, //original radius
+				// radius: node.r, //original radius
+				radius: radiusHolder, //original radius
 				id: data.cat + '.' + (data.name.replace(/\s/g, '-')),
 				cat: data.cat,
 				name: data.name,
@@ -61,6 +88,7 @@
 		simulation.nodes(nodes).on('tick', ticked);
 
 		svg.style('background-color', '#f2f2f2');
+		console.log(nodes);
 		let node = svg.selectAll('.node')
 			.data(nodes)
 			.enter().append('g')
@@ -99,18 +127,18 @@
 			.append('use')
 			.attr('xlink:href', d => `#${d.id}`);
 
-		// display text as circle icon
-		node.filter(d => !String(d.icon).includes('img/'))
-			.append('text')
-			.classed('node-icon', true)
-			.attr('clip-path', d => `url(#clip-${d.id})`)
-			.selectAll('tspan')
-			.data(d => d.icon.split(';'))
-			.enter()
-				.append('tspan')
-				.attr('x', 0)
-				.attr('y', (d, i, nodes) => (13 + (i - nodes.length / 2 - 0.5) * 10))
-				.text(name => name);
+		// // display text as circle icon
+		// node.filter(d => !String(d.icon).includes('img/'))
+		// 	.append('text')
+		// 	.classed('node-icon', true)
+		// 	.attr('clip-path', d => `url(#clip-${d.id})`)
+		// 	.selectAll('tspan')
+		// 	.data(d => d.icon.split(';'))
+		// 	.enter()
+		// 		.append('tspan')
+		// 		.attr('x', 0)
+		// 		.attr('y', (d, i, nodes) => (13 + (i - nodes.length / 2 - 0.5) * 10))
+		// 		.text(name => name);
 
 		// display image as circle icon
 		node.filter(d => String(d.icon).includes('img/'))
@@ -137,9 +165,21 @@
 			.style('font-size','12px')
 			.call(legendOrdinal);
 
-		let sizeScale = d3.scaleOrdinal()
+
+		let sizeScale
+		if (filter=="rating" || filter=="both"){
+			sizeScale = d3.scaleOrdinal()
   			.domain(['lower rating', 'higher rating'])
   			.range([5, 10] );
+
+		}else{
+			sizeScale = d3.scaleOrdinal()
+  			.domain([''])
+  			.range([0] );
+		}	
+		// let sizeScale = d3.scaleOrdinal()
+  // 			.domain(['lower rating', 'higher rating'])
+  // 			.range([5, 10] );
 
 		let legendSize = d3.legendSize()
 			.scale(sizeScale)
@@ -279,3 +319,5 @@
 		}
 
 	};
+
+	drawGraph('none');
