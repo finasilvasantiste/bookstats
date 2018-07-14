@@ -78,7 +78,7 @@ let data = [{
 			icon: 'img/vampire.png',
 			
 		}, {
-			cat: 'Sci-Fi', name: 'Vaterland', value: 100,
+			cat: 'Thriller', name: 'Vaterland', value: 100,
 			icon: 'img/vaterland.png',
 			
 		}];

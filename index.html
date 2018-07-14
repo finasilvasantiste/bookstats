@@ -12,17 +12,6 @@
 	<script type="text/javascript" src="js/book_data.js"></script>
 	<script type="text/javascript" src="js/bubblegraph.js"></script>
 
-
-<!-- 	<div id="container" align="center"></div>
-
-	<script>
-    var vis = d3.select("#container")
-        .append("svg")
-        .attr("x", 128)
-        .attr("y", 256)
-        .attr("width",  300)
-		.attr("height",  1024);
-	</script> -->
 </head>
 <body>
 	<div id="form">
@@ -36,13 +25,10 @@
 			    <input type="checkbox" id="rating" value="rating">
 			    <label for="rating">Rating</label>
 			  </div>
-			  <div>
-			  	<input id="submit" type="submit" value="Submit">
-			  </div>
 		</fieldset>
 	</div>
 <script type="text/javascript">
-	$("#submit").click(function(){
+	$('input[type=checkbox]').change(function(){
 		if($('#genre').is(":checked") && $('#rating').is(":checked")){
 			drawGraph('both');
 			console.log("both");
@@ -52,10 +38,10 @@
 			drawGraph('genre');
 			console.log('genre');
 		}else{
+			drawGraph('none');
 			console.log('Nothing checked');
 		}
-	console.log("Submit");
-})
+	});
 </script>
 
 </body>
