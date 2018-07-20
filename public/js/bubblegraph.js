@@ -1,6 +1,6 @@
 		
 function drawGraph(filter){
-		console.log(filter);
+		// console.log(filter);
 
 		let svg = d3.select('svg');
 		let width = document.body.clientWidth; // get width in pixels
@@ -181,83 +181,68 @@ function drawGraph(filter){
 			.call(legendSize);
 
 
+		// Form with filter options
 
-		// infoBox.append('h2')
-		// 	.classed('circle-overlay__title', true)
-		// 	.text(d => d.name);
-
-		// infoBox.append('p')
-		// 	.classed('circle-overlay__body', true)
-		// 	.html(d => d.desc);
+		let form = svg.append('foreignObject')
+			.attr('x', 10 * 0.5 * 0.8)
+			.attr('y', 390 * 0.5 * 0.8)
+            .attr("width", 120)
+            .attr("height",200)	
 
 
-		// node.on('click', (currentNode) => {
-		// 	d3.event.stopPropagation();
-		// 	console.log('currentNode', currentNode);
-		// 	let currentTarget = d3.event.currentTarget; // the <g> el
+		var div = form.append('xhtml:div')
+                        .append('div')
 
-		// 	if (currentNode === focusedNode) {
-		// 		// no focusedNode or same focused node is clicked
-		// 		return;
-		// 	}
-		// 	let lastNode = focusedNode;
-		// 	focusedNode = currentNode;
+        var field = div.append('fieldset');
+        	
+    	field.append('legend')
+    		.html('Choose your filter');
 
-		// 	simulation.alphaTarget(0.2).restart();
-		// 	// hide all circle-overlay
-		// 	d3.selectAll('.circle-overlay').classed('hidden', true);
-		// 	d3.selectAll('.node-icon').classed('node-icon--faded', false);
+		var opt1Div = field.append('div');
 
-		// 	// don't fix last node to center anymore
-		// 	if (lastNode) {
-		// 		lastNode.fx = null;
-		// 		lastNode.fy = null;
-		// 		node.filter((d, i) => i === lastNode.index)
-		// 			.transition().duration(2000).ease(d3.easePolyOut)
-		// 			.tween('circleOut', () => {
-		// 				let irl = d3.interpolateNumber(lastNode.r, lastNode.radius);
-		// 				return (t) => {
-		// 					lastNode.r = irl(t);
-		// 				}
-		// 			})
-		// 			.on('interrupt', () => {
-		// 				lastNode.r = lastNode.radius;
-		// 			});
-		// 	}
+		opt1Div.append('input')
+			.attr('type', 'checkbox')
+			.attr('id', 'genre')
+			.attr('value', 'genre')
+			.attr('checked', null)
+			.on('click', function(){
+			
+				// d3.select(this)
+				// 	.attr( 'checked', true );
+				// drawGraph('genre');
+				console.log('genre svg');
+			});  ;   
 
-		// 	// if (!d3.event.active) simulation.alphaTarget(0.5).restart();
+		opt1Div.append('label')
+			.attr('for', 'genre')
+			.html('Genre');  
 
-		// 	d3.transition().duration(2000).ease(d3.easePolyOut)
-		// 		.tween('moveIn', () => {
-		// 			console.log('tweenMoveIn', currentNode);
-		// 			let ix = d3.interpolateNumber(currentNode.x, centerX);
-		// 			let iy = d3.interpolateNumber(currentNode.y, centerY);
-		// 			let ir = d3.interpolateNumber(currentNode.r, centerY * 0.5);
-		// 			return function (t) {
-		// 				// console.log('i', ix(t), iy(t));
-		// 				currentNode.fx = ix(t);
-		// 				currentNode.fy = iy(t);
-		// 				currentNode.r = ir(t);
-		// 				simulation.force('collide', forceCollide);
-		// 			};
-		// 		})
-		// 		.on('end', () => {
-		// 			simulation.alphaTarget(0);
-		// 			let $currentGroup = d3.select(currentTarget);
-		// 			$currentGroup.select('.circle-overlay')
-		// 				.classed('hidden', false);
-		// 			$currentGroup.select('.node-icon')
-		// 				.classed('node-icon--faded', true);
 
-		// 		})
-		// 		.on('interrupt', () => {
-		// 			console.log('move interrupt', currentNode);
-		// 			currentNode.fx = null;
-		// 			currentNode.fy = null;
-		// 			simulation.alphaTarget(0);
-		// 		});
+		var opt2Div = field.append('div');
 
-		// });
+		opt2Div.append('input')
+			.attr('type', 'checkbox')
+			.attr('id', 'rating')
+			.attr('value', 'rating')
+			.on('click', function(){
+				drawGraph('rating');
+				console.log('rating svg');
+			});   
+
+		opt2Div.append('label')
+			.attr('for', 'rating')
+			.html('Rating');  
+
+		d3.select("input[type=checkbox]").on("change",update);
+
+		function update(){
+				if(d3.select("#genre").property("checked")){
+					drawGraph('genre');
+					console.log('genre update');
+				}		
+			}
+
+ 
 
 		// blur
 		d3.select(document).on('click', () => {
