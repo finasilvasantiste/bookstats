@@ -240,42 +240,34 @@ function drawGraph(filter){
 
 		if (filter =='rating') {
 			d3.select("#rating").attr('checked', true);
-			console.log('check rating');
 		}else if (filter =='genre') {
 			d3.select("#genre").attr('checked', true);
-			console.log('check genre');
 		}else if (filter == 'both'){
 			d3.select("#genre").attr('checked', true);
 			d3.select("#rating").attr('checked', true);
-			console.log('check both');
 		}		
 
 		d3.select("#rating").on("change",update);
 		d3.select("#genre").on("change",update);
 
 		function update(){
-				console.log('checkbox check');
 				if(d3.select("#genre").property("checked") && d3.select("#rating").property("checked")){
 					drawGraph('both');
-					console.log('both update');
 				}else
 					if(d3.select("#genre").property("checked")){
 					drawGraph('genre');
-					console.log('genre update');
 				}else 
 					if(d3.select("#rating").property("checked")){
 					drawGraph('rating');
-					console.log('rating update');
 				}else{
 					drawGraph('none');
-					console.log('Nothing checked');
 				} 		
 			}
 
  		// Footer
 
 		var footer = svg.append('foreignObject')
-			.attr('x', 95 * 0.5 * 0.8)
+			.attr('x', 80 * 0.5 * 0.8)
 			.attr('y', 850 * 0.5 * 0.8)
             .attr("width", 150)
             .attr("height",200);
