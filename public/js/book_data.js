@@ -10,6 +10,10 @@ let data = [{
 			icon: 'img/annihilation.png',
 			
 		}, {
+			cat: 'Thriller', name: 'The Thief', value: 30,
+			icon: 'img/thief.png',
+			
+		}, {
 			cat: 'Sci-Fi', name: 'Authority', value: 10,
 			icon: 'img/authority.png',
 			

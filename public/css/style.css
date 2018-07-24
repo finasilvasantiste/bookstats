@@ -11,6 +11,7 @@ html, body {
 		}
 		h1 {
 			text-align: center;
+			font-size: 30px;
 		}
 		svg {
 			margin:auto;
@@ -22,8 +23,6 @@ html, body {
 			border-radius: 50%;
 			position: absolute;
 			overflow: hidden;
-			/*it's buggy with the foreignObject background right now*/
-			/*background-color: rgba(255,255,255,0.5);*/
 		}
 		.circle-overlay__inner {
 			text-align: center;

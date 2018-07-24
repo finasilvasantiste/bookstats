@@ -12,7 +12,7 @@ function drawGraph(filter){
 
 		let format = d3.format(',d');
 
-		 $("#bubblegraph").empty().attr("width", '100%').attr("height", 800);
+		 $("#bubblegraph").empty().attr("width", '100%').attr("height",680);
 
 
 		let scaleColor;
@@ -22,7 +22,7 @@ function drawGraph(filter){
 		function setColor(filter){
 			if (filter=="genre" || filter=="both"){
 				scaleColor = d3.scaleOrdinal().range(["#B0D5D0", 
-			"#91bad8" ,"#FFDEE5", "#E2B1CD", "#FEE8DB"]);
+			"#91bad8" ,"#FEE8DB", "#E2B1CD", "#8b95c1"]);
 			}
 			else{
 				scaleColor = d3.scaleOrdinal().range(["#cecece"]);
@@ -147,7 +147,7 @@ function drawGraph(filter){
 		let legend = svg.append('g')
 			.classed('legend-color', true)
 			.attr('text-anchor', 'start')
-			.attr('transform','translate(20,30)')
+			.attr('transform','translate(20, 140)')
 			.style('font-size','12px')
 			.call(legendOrdinal);
 
@@ -176,24 +176,39 @@ function drawGraph(filter){
 		let legend2 = svg.append('g')
 			.classed('legend-size', true)
 			.attr('text-anchor', 'start')
-			.attr('transform', 'translate(150, 25)')
+			.attr('transform', 'translate(150, 140)')
 			.style('font-size', '12px')
 			.call(legendSize);
+
+		// Header
+
+		var header = svg.append('foreignObject')
+			.attr('x', 10 * 0.5 * 0.8)
+			.attr('y', 25 * 0.5 * 0.8)
+            .attr("width", 250)
+            .attr("height",200)	;
+
+
+        var divHeader = header.append('xhtml:div')
+						    .append('div');
+
+		var headerContent = divHeader.append('h1')
+							.html('Books Read <br> in 2017 & 2018');
 
 
 		// Form with filter options
 
-		let form = svg.append('foreignObject')
+		var form = svg.append('foreignObject')
 			.attr('x', 10 * 0.5 * 0.8)
-			.attr('y', 390 * 0.5 * 0.8)
+			.attr('y', 650 * 0.5 * 0.8)
             .attr("width", 120)
-            .attr("height",200)	
+            .attr("height",200)	;
 
 
-		var div = form.append('xhtml:div')
-                        .append('div')
+		var divForm = form.append('xhtml:div')
+                        .append('div');
 
-        var field = div.append('fieldset');
+        var field = divForm.append('fieldset');
         	
     	field.append('legend')
     		.html('Choose a filter');
