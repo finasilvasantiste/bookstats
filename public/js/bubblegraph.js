@@ -12,7 +12,7 @@ function drawGraph(filter){
 
 		let format = d3.format(',d');
 
-		 $("#bubblegraph").empty().attr("width", '100%').attr("height",680);
+		 $("#bubblegraph").empty().attr("width", '100%').attr("height",780);
 
 
 		let scaleColor;
@@ -147,7 +147,7 @@ function drawGraph(filter){
 		let legend = svg.append('g')
 			.classed('legend-color', true)
 			.attr('text-anchor', 'start')
-			.attr('transform','translate(20, 140)')
+			.attr('transform','translate(30, 140)')
 			.style('font-size','12px')
 			.call(legendOrdinal);
 
@@ -176,17 +176,17 @@ function drawGraph(filter){
 		let legend2 = svg.append('g')
 			.classed('legend-size', true)
 			.attr('text-anchor', 'start')
-			.attr('transform', 'translate(150, 140)')
+			.attr('transform', 'translate(160, 140)')
 			.style('font-size', '12px')
 			.call(legendSize);
 
 		// Header
 
 		var header = svg.append('foreignObject')
-			.attr('x', 10 * 0.5 * 0.8)
+			.attr('x', 20 * 0.5 * 0.8)
 			.attr('y', 25 * 0.5 * 0.8)
             .attr("width", 250)
-            .attr("height",200)	;
+            .attr("height",200);
 
 
         var divHeader = header.append('xhtml:div')
@@ -199,7 +199,7 @@ function drawGraph(filter){
 		// Form with filter options
 
 		var form = svg.append('foreignObject')
-			.attr('x', 10 * 0.5 * 0.8)
+			.attr('x', 30 * 0.5 * 0.8)
 			.attr('y', 650 * 0.5 * 0.8)
             .attr("width", 120)
             .attr("height",200)	;
@@ -272,7 +272,21 @@ function drawGraph(filter){
 				} 		
 			}
 
- 
+ 		// Footer
+
+		var footer = svg.append('foreignObject')
+			.attr('x', 95 * 0.5 * 0.8)
+			.attr('y', 850 * 0.5 * 0.8)
+            .attr("width", 150)
+            .attr("height",200);
+
+        var divFooter = footer.append('xhtml:div')
+						    .append('div');
+
+		var footerContent = divFooter.append('h4')
+							.html('Made with ♥ in California <br> <a href="https://github.com/finasilvasantiste/bookstats" target="_new">(Github Link) </a>');
+							
+
 
 		// blur
 		d3.select(document).on('click', () => {

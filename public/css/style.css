@@ -5,6 +5,7 @@ html, body {
 			font-family: Helvetica, Calibri, Roboto, Open Sans, sans-serif
 			-webkit-backface-visibility: hidden;
 			background: #ffffff;
+			overflow: hidden;
 		}
 		* {
 			box-sizing: inherit;
@@ -12,6 +13,14 @@ html, body {
 		h1 {
 			text-align: center;
 			font-size: 30px;
+			color: #282828;
+		}
+		h4 {
+			text-align: center;
+			color: #565656;
+		}
+		a:link, a:visited {
+		    color: #95979b;
 		}
 		svg {
 			margin:auto;
