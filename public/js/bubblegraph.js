@@ -12,7 +12,7 @@ function drawGraph(filter){
 
 		let format = d3.format(',d');
 
-		 $("#bubblegraph").empty().attr("width", '100%').attr("height", 600);
+		 $("#bubblegraph").empty().attr("width", '100%').attr("height", 800);
 
 
 		let scaleColor;
@@ -196,26 +196,19 @@ function drawGraph(filter){
         var field = div.append('fieldset');
         	
     	field.append('legend')
-    		.html('Choose your filter');
+    		.html('Choose a filter');
 
 		var opt1Div = field.append('div');
 
 		opt1Div.append('input')
 			.attr('type', 'checkbox')
 			.attr('id', 'genre')
-			.attr('value', 'genre')
-			.attr('checked', null)
-			.on('click', function(){
-			
-				// d3.select(this)
-				// 	.attr( 'checked', true );
-				// drawGraph('genre');
-				console.log('genre svg');
-			});  ;   
+			.attr('value', 'genre');   
 
 		opt1Div.append('label')
 			.attr('for', 'genre')
 			.html('Genre');  
+
 
 
 		var opt2Div = field.append('div');
@@ -223,23 +216,45 @@ function drawGraph(filter){
 		opt2Div.append('input')
 			.attr('type', 'checkbox')
 			.attr('id', 'rating')
-			.attr('value', 'rating')
-			.on('click', function(){
-				drawGraph('rating');
-				console.log('rating svg');
-			});   
+			.attr('value', 'rating');   
 
 		opt2Div.append('label')
 			.attr('for', 'rating')
 			.html('Rating');  
 
-		d3.select("input[type=checkbox]").on("change",update);
+
+		if (filter =='rating') {
+			d3.select("#rating").attr('checked', true);
+			console.log('check rating');
+		}else if (filter =='genre') {
+			d3.select("#genre").attr('checked', true);
+			console.log('check genre');
+		}else if (filter == 'both'){
+			d3.select("#genre").attr('checked', true);
+			d3.select("#rating").attr('checked', true);
+			console.log('check both');
+		}		
+
+		d3.select("#rating").on("change",update);
+		d3.select("#genre").on("change",update);
 
 		function update(){
-				if(d3.select("#genre").property("checked")){
+				console.log('checkbox check');
+				if(d3.select("#genre").property("checked") && d3.select("#rating").property("checked")){
+					drawGraph('both');
+					console.log('both update');
+				}else
+					if(d3.select("#genre").property("checked")){
 					drawGraph('genre');
 					console.log('genre update');
-				}		
+				}else 
+					if(d3.select("#rating").property("checked")){
+					drawGraph('rating');
+					console.log('rating update');
+				}else{
+					drawGraph('none');
+					console.log('Nothing checked');
+				} 		
 			}
 
  
